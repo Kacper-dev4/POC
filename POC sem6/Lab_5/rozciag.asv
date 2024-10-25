@@ -1,0 +1,14 @@
+function y = rozciag(x)
+[w,k] = size(x);
+a = min(image);
+b = max(image);
+for i=1:w
+for j=1+k
+
+y(i,j) = (()/()) * (x(i,j) - a) + 0
+
+end
+end
+
+end
+
