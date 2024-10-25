@@ -281,7 +281,7 @@ for i=1:10
 end
 
 %%%%%% Filtracja górno przepustowa %%%%%%%
-
+maska = [-1,-1,-1;-1,9,-1;-1,-1,-1];
 h = fspecial('unsharp');
 
 j = 1;
@@ -294,7 +294,7 @@ L1=fftshift(fft2(amf));
 imshow(log(1+abs(L1)),[]);
 for i=1:10
     
-     amf = imfilter(amf,h,'replicate');
+     amf = imfilter(amf,maska,'replicate');
     
     if i==1 || i==2 || i==5 || i==10
         j = j+1;
