@@ -3,6 +3,7 @@ clear all
 t1 = imread("tr1.png");
 cir = imread("cir1.png");
 kreski = imread("kreski.png");
+grayImage = imread("bridge_512x512.bmp");
 
 %%%%%%% Zadanie 1 %%%%%%%%%%%%
 
@@ -93,12 +94,12 @@ end
 
 
 
-L1=fftshift(fft2(g1));
-imshow(log(1+abs(L1)),[]);
-xlabel('Widmo mocy');
-
-imshow(angle(L1),[]);
-xlabel('Faza');
+% L1=fftshift(fft2(g1));
+% imshow(log(1+abs(L1)),[]);
+% xlabel('Widmo mocy');
+% 
+% imshow(angle(L1),[]);
+% xlabel('Faza');
 
 %%%%%%% Trójkąt rotacja %%%%%%%%%%%
 j=0; % Zmienna wykorzystywana do wyświetlania w subplot
@@ -181,6 +182,12 @@ for i=1:4
     imshow(angle(L1),[]);
 end
 
+subplot(3,4,5)
+ylabel('Widmo mocy');
+
+subplot(3,4,9)
+ylabel('Faza');
+
 %%%%% Linie %%%%%%%%%%%
 figure
 j=0; % Zmienna wykorzystywana do wyświetlania w subplot
@@ -202,6 +209,11 @@ for i=[1:45:91 , 121]  % Działa to tak najpier wyświetlamy obraz zrotowany o i
     imshow(angle(L1),[]);
 end
 
+subplot(3,4,5)
+ylabel('Widmo mocy');
+
+subplot(3,4,9)
+ylabel('Faza');
 %%%% Sinusoida %%%%%%%%%
 figure
 a=10*[1 -1 2 -4000];
@@ -230,3 +242,71 @@ L1=fftshift(fft2(a1));
 
 end
 
+subplot(3,4,5)
+ylabel('Widmo mocy');
+
+subplot(3,4,9)
+ylabel('Faza');
+%%%%%%%%% Zadanie 3 %%%%%%%%%%%%%%%%
+
+%%%%%% Filtracja dolno przepustowa %%%%%%%
+
+h = fspecial('gaussian',[5,5],1);
+
+j = 1;
+figure
+subplot(2,5,1)
+imshow(grayImage,[])
+title('O1')
+subplot(2,5,6)
+L1=fftshift(fft2(grayImage));
+imshow(log(1+abs(L1)),[]);
+for i=1:10
+    if i==1
+    amf = imfilter(grayImage,h,'replicate');
+    else
+     amf = imfilter(amf,h,'replicate');
+    end
+    if i==1 || i==2 || i==5 || i==10
+        j = j+1;
+        s1=strcat('AMF iteracja=',num2str(i));
+        subplot(2,5,j)
+        imshow(amf,[])
+        title(s1)
+        subplot(2,5,j+5)
+        L1=fftshift(fft2(amf));
+        imshow(log(1+abs(L1)),[]);
+
+    end
+end
+
+%%%%%% Filtracja górno przepustowa %%%%%%%
+
+h = fspecial('unsharp');
+
+j = 1;
+figure
+subplot(2,5,1)
+imshow(amf,[])
+title('O1')
+subplot(2,5,6)
+L1=fftshift(fft2(amf));
+imshow(log(1+abs(L1)),[]);
+for i=1:10
+    
+     amf = imfilter(amf,h,'replicate');
+    
+    if i==1 || i==2 || i==5 || i==10
+        j = j+1;
+        s1=strcat('Iteracja=',num2str(i));
+        subplot(2,5,j)
+        imshow(amf,[])
+        title(s1)
+        subplot(2,5,j+5)
+        L1=fftshift(fft2(amf));
+        imshow(log(1+abs(L1)),[]);
+
+    end
+end
+
+%%%%%% Zadanie 4 %%%%%%%%%%%%55
