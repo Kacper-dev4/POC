@@ -34,13 +34,13 @@ ylabel('Trójkąty translacja');
 figure
 
 j=0;
-
+n = 0;
 for i=1:4
     j=j+1;
 
-    cirResize=imresize(cir,[512, 512]);
-
- 
+    cirResize=imresize(cir(1+n:512-n,1+n:512-n), 3, 'nearest');
+   
+    n = 69* j; 
    % L3=fftshift(fft2(cirResize));
     subplot(2,4,j)
     imshow(cirResize,[])
@@ -59,5 +59,8 @@ for i=[1:45:91 , 121]  % Działa to tak najpier wyświetlamy obraz zrotowany o i
     title(s1);
 end
 
+figure
+n = 50;
+imshow(imresize(cir(1+n:512-n,1+n:512-n), 3, 'nearest')) 
 
 
