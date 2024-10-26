@@ -282,7 +282,7 @@ end
 
 %%%%%% Filtracja górno przepustowa %%%%%%%
 
-maska = [-1,-1,-1;-1,8,-1;-1,-1,-1];
+maska = [-1,-1,-1;0,0,0;1,1,1];
 %maska = [-1,2,-1];
 %maska = [1,2,1;0,0,0;-1,-2,-1];
 %maska = [-1,0,1;-2,0,2;-1,0,1];
@@ -489,3 +489,15 @@ odwrot = ifft2(ifftshift(FFT2_filtered)); % `ifftshift` usuwa przesunięcie widm
 subplot(2,5,10)
 imshow(real(odwrot), [])
 title('Obraz po filtracji górnoprzepustowej')
+
+%%%%% Zadanie 5  %%%%%%%%%%%%
+amplituda = 50;
+f = 0.09;
+[x,~] = meshgrid(1:512,1:512);
+
+zakluceniePeriodyczne = amplituda *sin(2* pi * f * x);
+
+zakluconyObraz = double(grayImage) + zakluceniePeriodyczne;
+figure
+imshow(uint8(zakluconyObraz))
+
