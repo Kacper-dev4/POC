@@ -339,7 +339,7 @@ subplot(2,5,2)
 imshow(FFT2ABS, [])
 title('Widmo mocy')
 
-% Tworzenie maski dolnoprzepustowej 
+% Tworzenie maski dolnoprzepustowej (np. białe koło)
 dolno = bialeKolko(50); 
 
 subplot(2,5,3)
@@ -379,7 +379,7 @@ subplot(2,5,7)
 imshow(FFT2ABS, [])
 title('Widmo mocy')
 
-% Tworzenie maski dolnoprzepustowej 
+% Tworzenie maski dolnoprzepustowej (np. białe koło)
 dolno =   fspecial('gaussian',[512,512],50);
 subplot(2,5,8)
 imshow(dolno, [])
@@ -422,14 +422,14 @@ subplot(2,5,2)
 imshow(FFT2ABS, [])
 title('Widmo mocy')
 
-% Tworzenie maski górnoprzepustowej 
-gorno = czarneKolko(25); 
+% Tworzenie maski dolnoprzepustowej (np. białe koło)
+gorno = czarneKolko(50); 
 
 subplot(2,5,3)
 imshow(gorno, [])
-title('Maska górnoprzepustowa')
+title('Maska dolnoprzepustowa')
 
-% Zastosowanie maski górnoprzepustowej na przesuniętym widmie
+% Zastosowanie maski dolnoprzepustowej na przesuniętym widmie
 FFT2_filtered = FFT2 .* gorno;
 
 % Widmo po zastosowaniu maski
@@ -445,7 +445,7 @@ odwrot = ifft2(ifftshift(FFT2_filtered)); % `ifftshift` usuwa przesunięcie widm
 % Wyświetlenie przefiltrowanego obrazu
 subplot(2,5,5)
 imshow(real(odwrot), [])
-title('Obraz po filtracji górnoprzepustowej')
+title('Obraz po filtracji dolnoprzepustowej')
 
 % Obraz wejściowy
 
@@ -462,13 +462,11 @@ subplot(2,5,7)
 imshow(FFT2ABS, [])
 title('Widmo mocy')
 
-% Tworzenie maski górnoprzepustowej 
-gorno =   fspecial('gaussian',[512,512],35);
-gorno = -gorno;
-%gorno(256, 256) = gorno(256, 256) + 1;
+% Tworzenie maski dolnoprzepustowej (np. białe koło)
+gorno =   fspecial('gaussian',[512,512],50);
 subplot(2,5,8)
 imshow(gorno, [])
-title('Maska górnoprzepustowa')
+title('Maska dolnoprzepustowa')
 
 % Zastosowanie maski dolnoprzepustowej na przesuniętym widmie
 FFT2_filtered = FFT2 .* gorno;
@@ -486,4 +484,4 @@ odwrot = ifft2(ifftshift(FFT2_filtered)); % `ifftshift` usuwa przesunięcie widm
 % Wyświetlenie przefiltrowanego obrazu
 subplot(2,5,10)
 imshow(real(odwrot), [])
-title('Obraz po filtracji górnoprzepustowej')
+title('Obraz po filtracji dolnoprzepustowej')
