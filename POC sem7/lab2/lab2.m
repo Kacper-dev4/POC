@@ -16,7 +16,7 @@ figure
 for i=1:25:91  % Działa to tak najpier wyświetlamy obraz zrotowany o i-1 = 0 potem i + 25 -1 = 25 następnie i + 25 - 1 = 75 i koniec
     j=j+1;
     t1r=imrotate(t1,i-1,'crop');
-    L1=fftshift(fft2(t1r));
+    %L1=fftshift(fft2(t1r));
     subplot(2,4,j)
     s1=strcat('kąt=',num2str(i-1));
     imshow(t1r,[])
@@ -29,7 +29,7 @@ sc= int8(-150 + 250.*rand(4,2));
 for i=1:4
     j=j+1;
     t1t=imtranslate(t1,sc(i,:));
-    L1=fftshift(fft2(t1t));
+    %L1=fftshift(fft2(t1t));
     subplot(2,4,j)
     imshow(t1t,[])
 end
@@ -463,9 +463,11 @@ imshow(FFT2ABS, [])
 title('Widmo mocy')
 
 % Tworzenie maski górnoprzepustowej 
-gorno =   fspecial('gaussian',[512,512],35);
-gorno = -gorno;
+%gorno =   fspecial('gaussian',[512,512],35);
+%gorno = -gorno;
 %gorno(256, 256) = gorno(256, 256) + 1;
+
+gorno = czarneKolko(10);
 subplot(2,5,8)
 imshow(gorno, [])
 title('Maska górnoprzepustowa')
