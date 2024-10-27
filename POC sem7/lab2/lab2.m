@@ -431,6 +431,7 @@ title('Maska górnoprzepustowa')
 
 % Zastosowanie maski górnoprzepustowej na przesuniętym widmie
 FFT2_filtered = FFT2 .* gorno;
+%FFT2_filtered = gorno .*FFT2;
 
 % Widmo po zastosowaniu maski
 filteredFFT2ABS = log(1 + abs(FFT2_filtered));
@@ -444,7 +445,8 @@ odwrot = ifft2(ifftshift(FFT2_filtered)); % `ifftshift` usuwa przesunięcie widm
 
 % Wyświetlenie przefiltrowanego obrazu
 subplot(2,5,5)
-imshow(real(odwrot), [])
+%imshow(real(odwrot), [])
+imshow(uint8(odwrot), [])
 title('Obraz po filtracji górnoprzepustowej')
 
 % Obraz wejściowy
@@ -487,7 +489,8 @@ odwrot = ifft2(ifftshift(FFT2_filtered)); % `ifftshift` usuwa przesunięcie widm
 
 % Wyświetlenie przefiltrowanego obrazu
 subplot(2,5,10)
-imshow(real(odwrot), [])
+%imshow(real(odwrot), [])
+imshow(uint8(odwrot), [])
 title('Obraz po filtracji górnoprzepustowej')
 
 %%%%% Zadanie 5  %%%%%%%%%%%%
