@@ -271,7 +271,7 @@ for i=1:10
         j = j+1;
         s1=strcat('AMF iteracja=',num2str(i));
         subplot(2,5,j)
-        imshow(amf,[])
+        imshow(double(amf),[])
         title(s1)
         subplot(2,5,j+5)
         L1=fftshift(fft2(amf));
@@ -286,7 +286,7 @@ maska = [-1,-1,-1;0,0,0;1,1,1];
 %maska = [-1,2,-1];
 %maska = [1,2,1;0,0,0;-1,-2,-1];
 %maska = [-1,0,1;-2,0,2;-1,0,1];
-%h = fspecial('unsharp');
+h = fspecial('gaussian',[5,5],1);
 
 j = 1;
 figure
@@ -296,17 +296,20 @@ title('O1')
 subplot(2,5,6)
 L1=fftshift(fft2(grayImage));
 imshow(log(1+abs(L1)),[]);
-for i=1:10
+for i=1:4
     
     if i==1
-        %amf = imfilter(grayImage,h,'replicate');
-        amf = imfilter(grayImage,maska);
+        amf2 = imfilter(grayImage,h);
+        amf = grayImage - amf2;
+        %amf = imfilter((grayImage),maska);
+        
     else
-        %amf = imfilter(amf,h,'replicate');
-        amf = imfilter(amf,maska);
+        amf2 = imfilter(amf2,h);
+        amf = grayImage - amf2;
+        %amf = imfilter((amf),maska);
     end
     
-    if i==1 || i==2 || i==5 || i==10
+    if i==1 || i==2 || i==3 || i==4
         j = j+1;
         s1=strcat('Iteracja=',num2str(i));
         subplot(2,5,j)
@@ -318,6 +321,8 @@ for i=1:10
 
     end
 end
+
+
 
 %%%%%% Zadanie 4 %%%%%%%%%%%%%%
 
@@ -464,10 +469,6 @@ subplot(2,5,7)
 imshow(FFT2ABS, [])
 title('Widmo mocy')
 
-% Tworzenie maski górnoprzepustowej 
-%gorno =   fspecial('gaussian',[512,512],35);
-%gorno = -gorno;
-%gorno(256, 256) = gorno(256, 256) + 1;
 
 gorno = czarneKolko(10);
 subplot(2,5,8)
