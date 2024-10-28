@@ -70,7 +70,6 @@ n = 50;
 imshow(imresize(cir(1+n:512-n,1+n:512-n), 3, 'nearest')) 
 
 
-
 %%%%%%%%% Przykład sinus %%%%%%%%%%
 
 a=10*[1 -1 2 -4000];
@@ -166,7 +165,7 @@ for i=1:4
     j=j+1;
 
     cirResize=imresize(cir(1+n:512-n,1+n:512-n), 3, 'nearest');
-    cirResize = imresize(cirResize,[512,512]);
+   
     n = 69* j; 
    % L3=fftshift(fft2(cirResize));
     subplot(3,4,j)
@@ -502,12 +501,11 @@ f = 0.09;
 
 for i = 1:512
  for j=1:512
- a1(i,j)=uint8(127+128*sin(i/10+j/10));
+ a1(i,j)=uint8(127+128*sin(i/20+j/50));
  end
 end
 
-%zakluceniePeriodyczne = amplituda *sin(2* pi * f * x);
-zakluceniePeriodyczne = double(a1);
+zakluceniePeriodyczne = amplituda *sin(2* pi * f * x);
 
 zakluconyObraz = double(grayImage) + zakluceniePeriodyczne;
 figure
