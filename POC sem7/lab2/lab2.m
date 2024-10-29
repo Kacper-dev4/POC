@@ -1,6 +1,28 @@
 clear all
 
-t1 = imread("tr1.png");
+% Wymiary obrazu
+height = 512;
+width = 512;
+
+% Inicjalizacja obrazu typu uint8
+img = zeros(height, width, 'uint8');
+
+% Współrzędne wierzchołków trójkąta
+x = [100, 400, 250]; % X-owe współrzędne wierzchołków
+y = [400, 400, 100]; % Y-owe współrzędne wierzchołków
+
+% Tworzenie maski trójkąta
+triangleMask = poly2mask(x, y, height, width);
+
+% Zastosowanie maski na obraz (ustawienie pikseli trójkąta na 255)
+img(triangleMask) = 255;
+
+% Wyświetlenie obrazu
+imshow(img);
+
+
+%t1 = imread("tr1.png");
+t1 = img;
 cir = imread("cir1.png");
 kreski = imread("kreski.png");
 grayImage = imread("bridge_512x512.bmp"); 
@@ -80,7 +102,8 @@ j=0;
 for i=1:4
 for u = 1:512
 for v=1:512
-a1(u,v)=uint8(127+128*sin(u/a(i)+v/b(i)));
+%a1(u,v)=uint8(127+128*sin(u/a(i)+v/b(i)));
+a1(u,v)=double(0+1*sin(u/a(i)+v/b(i)));
 end
 end
 j=j+1;
@@ -107,7 +130,7 @@ j=0; % Zmienna wykorzystywana do wyświetlania w subplot
 figure
 for i=1:25:91  % Działa to tak najpier wyświetlamy obraz zrotowany o i-1 = 0 potem i + 25 -1 = 25 następnie i + 25 - 1 = 75 i koniec
     j=j+1;
-    t1r=imrotate(t1,i-1,'crop');
+    t1r=imrotate(t1,i-1,'bilinear','crop');
     L1=fftshift(fft2(t1r));
     subplot(3,4,j)
     s1=strcat('kąt=',num2str(i-1));
@@ -194,7 +217,7 @@ figure
 j=0; % Zmienna wykorzystywana do wyświetlania w subplot
 for i=[1:45:91 , 121]  % Działa to tak najpier wyświetlamy obraz zrotowany o i-1 = 0 potem i + 25 -1 = 25 następnie i + 25 - 1 = 75 i koniec
     j=j+1;
-    kreski1r=imrotate(kreski,i-1,'crop');
+    kreski1r=imrotate(kreski,i-1,'bilinear','crop');
     L2=fftshift(fft2(kreski1r));
     subplot(3,4,j)
     s1=strcat('kąt=',num2str(i-1));
@@ -217,14 +240,16 @@ subplot(3,4,9)
 ylabel('Faza');
 %%%% Sinusoida %%%%%%%%%
 figure
-a=10*[1 -1 2 -4000];
-b=5* [1 1 4 2];
+a=10*[1 3 4 2];
+b=5* [1 3 4 2];
 subtitle('Sinus');
 j=0;
 for i=1:4
 for u = 1:512
 for v=1:512
-a1(u,v)=uint8(127+128*sin(u/a(i)+v/b(i)));
+%a1(u,v)=uint8(127+128*sin(u/a(i)+v/b(i)));
+a1(u,v)=double(127+128*sin(u/a(i)+v/b(i)));
+a1(u,v) = double(a1(u,v));
 end
 end
 j=j+1;
@@ -239,7 +264,8 @@ L1=fftshift(fft2(a1));
     imshow(log(1+abs(L1)),[]);
     
     subplot(3,4,j+8)
-    imshow(angle(L1),[]);
+    %imshow(angle(L1),[]);
+    imshow(L1,[])
 
 end
 
@@ -283,11 +309,13 @@ end
 
 %%%%%% Filtracja górno przepustowa %%%%%%%
 
-maska = [-1,-1,-1;0,0,0;1,1,1];
+%maska = [-1,-1,-1;0,0,0;1,1,1];
 %maska = [-1,2,-1];
 %maska = [1,2,1;0,0,0;-1,-2,-1];
 %maska = [-1,0,1;-2,0,2;-1,0,1];
-h = fspecial('gaussian',[5,5],1);
+%maska = fspecial('laplacian');
+maska = [0,-1,0;-1,4,-1;0,-1,0];
+%h = fspecial('gaussian',[5,5],1);
 
 j = 1;
 figure
@@ -300,21 +328,21 @@ imshow(log(1+abs(L1)),[]);
 for i=1:4
     
     if i==1
-        amf2 = imfilter(grayImage,h);
-        amf = grayImage - amf2;
-        %amf = imfilter((grayImage),maska);
+        %amf2 = imfilter(grayImage,h);
+        %amf = grayImage - amf2;
+        amf = double(imfilter((grayImage),maska));
         
     else
-        amf2 = imfilter(amf2,h);
-        amf = grayImage - amf2;
-        %amf = imfilter((amf),maska);
+        %amf2 = imfilter(amf2,h);
+        %amf = grayImage - amf2;
+        amf = double(imfilter((amf),maska));
     end
     
     if i==1 || i==2 || i==3 || i==4
         j = j+1;
         s1=strcat('Iteracja=',num2str(i));
         subplot(2,5,j)
-        imshow(amf,[])
+        imshow((amf),[])
         title(s1)
         subplot(2,5,j+5)
         L1=fftshift(fft2(amf));
@@ -386,7 +414,8 @@ imshow(FFT2ABS, [])
 title('Widmo mocy')
 
 % Tworzenie maski dolnoprzepustowej 
-dolno =   fspecial('gaussian',[512,512],50);
+%dolno =   fspecial('gaussian',[512,512],50);
+dolno = bialeKolko(75);
 subplot(2,5,8)
 imshow(dolno, [])
 title('Maska dolnoprzepustowa')
