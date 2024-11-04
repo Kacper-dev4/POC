@@ -240,8 +240,8 @@ subplot(3,4,9)
 ylabel('Faza');
 %%%% Sinusoida %%%%%%%%%
 figure
-a=10*[1 3 4 2];
-b=5* [1 3 4 2];
+a=10*[1 3 1 1];
+b=5* [1 3 2 7];
 subtitle('Sinus');
 j=0;
 for i=1:4
@@ -525,13 +525,13 @@ imshow(uint8(odwrot), [])
 title('Obraz po filtracji górnoprzepustowej')
 
 %%%%% Zadanie 5  %%%%%%%%%%%%
-amplituda = 50;
+amplituda = 10;
 f = 0.09;
 [x,~] = meshgrid(1:512,1:512);
 
 for i = 1:512
  for j=1:512
- a1(i,j)=uint8(127+128*sin(i/10+j/10));
+ a1(i,j)=uint8(60+61*sin(i/10+j/10));
  end
 end
 
