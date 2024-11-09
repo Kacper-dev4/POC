@@ -70,8 +70,27 @@ progOz2 = binaryzacja(Oz2,Tz2);
 pscolorOz1 = label2rgb(Lz1);%, 'jet', 'w', 'shuffle'); 
 pscolorOz2 = label2rgb(Lz2);%, 'jet', 'w', 'shuffle');
 
-poka3(img1,hist1,Rk1,pscolorRk1,T1,liczbaObszarowRk1,Oz1,histOz1,progOz1,pscolorOz1,Tz1,Bz1);
-poka3(img2,hist2,Rk2,pscolorRk2,Tz2,liczbaObszarowRk2,Oz2,histOz2,progOz2,pscolorOz2,Tz2,Bz2);
+Op1 = medfilt2(Oz1,[3,3]);
+Op2 = medfilt2(Oz2,[3,3]);
+
+histOp1 = imhist(Op1);
+histOp2 = imhist(Op2);
+
+Tp1 = 180;
+Tp2 = 100;
+
+progOp1 = binaryzacja(Op1,Tp1);
+progOp2 = binaryzacja(Op2,Tp2);
+
+[Lp1,Bp1] = bwlabel(progOp1);
+[Lp2,Bp2] = bwlabel(progOp2);
+
+pscolorOp1 = label2rgb(Lp1);%, 'jet', 'w', 'shuffle'); 
+pscolorOp2 = label2rgb(Lp2);%, 'jet', 'w', 'shuffle');
+
+
+poka3(img1,hist1,Rk1,pscolorRk1,T1,liczbaObszarowRk1,Oz1,histOz1,progOz1,pscolorOz1,Tz1,Bz1,Op1,histOp1,progOp1,pscolorOp1,Tp1,Bp1);
+poka3(img2,hist2,Rk2,pscolorRk2,Tz2,liczbaObszarowRk2,Oz2,histOz2,progOz2,pscolorOz2,Tz2,Bz2,Op2,histOp2,progOp2,pscolorOp2,Tp2,Bp2);
 
 
 
