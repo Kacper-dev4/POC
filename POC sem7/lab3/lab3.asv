@@ -1,6 +1,0 @@
-clear all
-clc
-
-coTo = imread("obrazy\obyToBylaKawa.jpg");
-
-imshow(co)
