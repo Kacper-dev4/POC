@@ -15,7 +15,7 @@ img2 = rgb2gray(img2);
 % imshow(img2);
 % title('img2');
 
-%%%% Zadanie 1 %%%%%%%%%%%
+%% Zadanie 1 %%%%%%%%%%%
 
 hist1 = imhist(img1);
 hist2 = imhist(img2);
@@ -29,8 +29,8 @@ Rk2 = binaryzacja(img2,T2);
 [L1,liczbaObszarowRk1] = bwlabel(Rk1);
 [L2,liczbaObszarowRk2] = bwlabel(Rk2);
 
-pscolorRk1 = label2rgb(L1, 'jet', 'w', 'shuffle'); 
-pscolorRk2 = label2rgb(L2, 'jet', 'w', 'shuffle');
+pscolorRk1 = label2rgb(L1);%, 'jet', 'w', 'shuffle'); 
+pscolorRk2 = label2rgb(L2);%, 'jet', 'w', 'shuffle');
 
 %% Otsu
 [Sk1,To1] = binOtsu(img1);
@@ -39,14 +39,39 @@ pscolorRk2 = label2rgb(L2, 'jet', 'w', 'shuffle');
 [L1otsu,liczbaObszarowSk1] = bwlabel(Sk1);
 [L2otsu,liczbaObszarowSk2] = bwlabel(Sk2);
 
-pscolorSk1 = label2rgb(L1otsu, 'jet', 'w', 'shuffle'); 
-pscolorSk2 = label2rgb(L2otsu, 'jet', 'w', 'shuffle');
+pscolorSk1 = label2rgb(L1otsu);%, 'jet', 'w', 'shuffle'); 
+pscolorSk2 = label2rgb(L2otsu);%, 'jet', 'w', 'shuffle');
 
 %% Wyświetlanie
 
 poka1(img1,hist1,Rk1,T1, pscolorRk1, liczbaObszarowRk1,Sk1,To1, pscolorSk1, liczbaObszarowSk1);
 poka1(img2,hist2,Rk2,T2, pscolorRk2, liczbaObszarowRk2,Sk2,To2, pscolorSk2, liczbaObszarowSk2);
 
+
+
+
+%% Zadanie 3
+
+Oz1 = imnoise(img1, 'salt & pepper', 0.02);
+Oz2 = imnoise(img2, 'salt & pepper', 0.02);
+
+histOz1 = imhist(Oz1);
+histOz2 = imhist(Oz2);
+
+Tz1 = 180;
+Tz2 = 100;
+
+progOz1 = binaryzacja(Oz1,Tz1);
+progOz2 = binaryzacja(Oz2,Tz2);
+
+[Lz1,Bz1] = bwlabel(progOz1);
+[Lz2,Bz2] = bwlabel(progOz2);
+
+pscolorOz1 = label2rgb(Lz1);%, 'jet', 'w', 'shuffle'); 
+pscolorOz2 = label2rgb(Lz2);%, 'jet', 'w', 'shuffle');
+
+poka3(img1,hist1,Rk1,pscolorRk1,T1,liczbaObszarowRk1,Oz1,histOz1,progOz1,pscolorOz1,Tz1,Bz1);
+poka3(img2,hist2,Rk2,pscolorRk2,Tz2,liczbaObszarowRk2,Oz2,histOz2,progOz2,pscolorOz2,Tz2,Bz2);
 
 
 

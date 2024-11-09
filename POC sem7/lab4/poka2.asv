@@ -1,0 +1,21 @@
+function [] = poka2(img,hist,progO,pscolorB,T)
+
+tekstprogO = sprintf('Wartosc progu: %d', T);
+
+figure
+
+subplot(3,4,1)
+imshow(img)
+title('Obraz oryginalny')
+
+subplot(3,4,2)
+bar(hist)
+title('Hist(O)')
+
+subplot(3,4,3)
+imshow(progO)
+title(tekstprogO)
+
+subplot()
+end
+
