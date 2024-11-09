@@ -21,7 +21,7 @@ hist1 = imhist(img1);
 hist2 = imhist(img2);
 
 T1 = 180;
-T2 = 107;
+T2 = 100;
 
 Rk1 = binaryzacja(img1,T1);
 Rk2 = binaryzacja(img2,T2);
