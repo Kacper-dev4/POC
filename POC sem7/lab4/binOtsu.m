@@ -1,7 +1,9 @@
-function [outputArg1,outputArg2] = binOtsu(inputArg1,inputArg2)
-%BINOTSU Summary of this function goes here
-%   Detailed explanation goes here
-outputArg1 = inputArg1;
-outputArg2 = inputArg2;
+function [out,threshold] = binOtsu(img)
+
+threshold = graythresh(img);
+threshold = threshold *255;
+
+out = binaryzacja(img,threshold);
+
 end
 

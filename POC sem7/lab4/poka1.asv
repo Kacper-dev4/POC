@@ -1,6 +1,7 @@
-function [] = poka1(img,hist,Rk,prog,pscolor)
+function [] = poka1(img,hist,Rk,T,pscolor,liczbaObszarowRk,Rk,T,pscolor,liczbaObszarowRk)
 
-tekstRk = sprintf('Wartosc progu: %d', prog);
+tekstRk = sprintf('Wartosc progu: %d', T);
+tekstRkLiczbaObszarow = sprintf('Liczba obszarow w Rk: %d',liczbaObszarowRk);
 
 figure
 subplot(2,2,1)
@@ -14,6 +15,11 @@ title(tekstRk)
 subplot(2,2,3)
 bar(hist)
 title('Histogram obrazu')
+
+
+subplot(2,2,4)
+imshow(pscolor)
+title(tekstRkLiczbaObszarow)
 
 end
 
