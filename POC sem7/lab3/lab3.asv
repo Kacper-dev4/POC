@@ -97,10 +97,10 @@ pscolorOp2 = label2rgb(Lp2);%, 'jet', 'w', 'shuffle');
 
 
 % poka3(img1,hist1,Rk1,pscolorRk1,T1,liczbaObszarowRk1,Oz1,histOz1,progOz1,pscolorOz1,Tz1,Bz1,Op1,histOp1,progOp1,pscolorOp1,Tp1,Bp1);
-% poka3(img2,hist2,Rk2,pscolorRk2,T2,liczbaObszarowRk2,Oz2,histOz2,progOz2,pscolorOz2,Tz2,Bz2,Op2,histOp2,progOp2,pscolorOp2,Tp2,Bp2);
+% poka3(img2,hist2,Rk2,pscolorRk2,Tz2,liczbaObszarowRk2,Oz2,histOz2,progOz2,pscolorOz2,Tz2,Bz2,Op2,histOp2,progOp2,pscolorOp2,Tp2,Bp2);
 
 poka3(img1,hist1,Sk1,pscolorSk1,To1,liczbaObszarowRk1,Oz1,histOz1,progOz1,pscolorOz1,Tz1,Bz1,Op1,histOp1,progOp1,pscolorOp1,Tp1,Bp1);
-poka3(img2,hist2,Sk2,pscolorSk2,To2,liczbaObszarowRk2,Oz2,histOz2,progOz2,pscolorOz2,Tz2,Bz2,Op2,histOp2,progOp2,pscolorOp2,Tp2,Bp2);
+poka3(img2,hist2,Sk2,pscolorSk2,Tz2,liczbaObszarowRk2,Oz2,histOz2,progOz2,pscolorOz2,Tz2,Bz2,Op2,histOp2,progOp2,pscolorOp2,Tp2,Bp2);
 
 
 %% Zadanie 4
