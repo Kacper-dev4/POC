@@ -29,7 +29,7 @@ title(tekstPscolorB)
 
 subplot(3,4,5)
 imshow(Oz)
-title('Obraz zakłócony 20% Gauss')
+title('Obraz zakłócony 20% salt & pepper')
 
 subplot(3,4,6)
 bar(histOz)
