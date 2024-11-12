@@ -42,7 +42,7 @@ pscolorRk2 = label2rgb(L2);%, 'jet', 'w', 'shuffle');
 pscolorSk1 = label2rgb(L1otsu);%, 'jet', 'w', 'shuffle'); 
 pscolorSk2 = label2rgb(L2otsu);%, 'jet', 'w', 'shuffle');
 
-% Wyświetlanie
+%%% Wyświetlanie
 
 poka1(img1,hist1,Rk1,T1, pscolorRk1, liczbaObszarowRk1,Sk1,To1, pscolorSk1, liczbaObszarowSk1);
 poka1(img2,hist2,Rk2,T2, pscolorRk2, liczbaObszarowRk2,Sk2,To2, pscolorSk2, liczbaObszarowSk2);
@@ -124,13 +124,13 @@ poka3(img2,hist2,Rk2,pscolorRk2,T2,liczbaObszarowRk2,Oz2,histOz2,progOz2,pscolor
 % imshow(prze4)
 
 %% Zadanie 4 
+
 prze1 = imclose(Sk1,strel('disk',45));
 %prze1 = imclose(Rk1,strel('disk',45));
-prze2 = imopen(prze1,strel('disk',66));
+prze2 = imopen(prze1,strel('disk',10));
 
-prze3 = imerode(prze2,strel('disk',25));
-prze4 = imdilate(prze3,strel('disk',25));
-
+prze3 = imdilate(prze2,strel('disk',20));
+prze4 = imerode(prze3,strel('disk',25));
 
 Bm(:,:,1) = prze1;
 Bm(:,:,2) = prze2;
@@ -139,8 +139,8 @@ Bm(:,:,4) = prze4;
 
 opisMi{1} = sprintf('Zamkniecia');
 opisMi{2} = sprintf('Otwarcia');
-opisMi{3} = sprintf('Erozja');
-opisMi{4} = sprintf('Dylatacja');
+opisMi{3} = sprintf('Dylatacji');
+opisMi{4} = sprintf('Erozja');
 
 [p1,LLp1]  = pseudoKolory(prze1);
 [p2,LLp2]  = pseudoKolory(prze2);
@@ -159,20 +159,14 @@ liczbaObszarowBmi(4) = LLp4;
 
 poka4(img1,Sk1,pscolorSk1,liczbaObszarowSk1,To1,Bm,opisMi,pscolorBm,liczbaObszarowBmi)
 %poka4(img1,Rk1,pscolorRk1,liczbaObszarowRk1,T1,Bm,opisMi,pscolorBm,liczbaObszarowBmi)
-
-% prze1 = imclose(Sk1,strel('disk',45));
-% %prze1 = imclose(Rk1,strel('disk',45));
-% prze2 = imopen(prze1,strel('disk',10));
-% 
-% prze3 = imdilate(prze2,strel('disk',20));
-% prze4 = imerode(prze3,strel('disk',25));
-
-%% Chyba najlepsze
-
-% prze1 = imclose(Sk1,strel('disk',45));
-% %prze1 = imclose(Rk1,strel('disk',45));
-% prze2 = imopen(prze1,strel('disk',45));
-% 
-% prze3 = imerode(prze2,strel('disk',63));
-% prze4 = imdilate(prze3,strel('disk',63));
-
+% figure 
+% subplot(1,5,1)
+% imshow(Sk1)
+% subplot(1,5,2)
+% imshow(prze1)
+% subplot(1,5,3)
+% imshow(prze2)
+% subplot(1,5,4)
+% imshow(prze3)
+% subplot(1,5,5)
+% imshow(prze4)
