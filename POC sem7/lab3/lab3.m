@@ -126,6 +126,7 @@ poka3(img2,hist2,Rk2,pscolorRk2,T2,liczbaObszarowRk2,Oz2,histOz2,progOz2,pscolor
 %% Zadanie 4
 
 prze1 = imclose(Sk1,strel('disk',45));
+%prze1 = imclose(Rk1,strel('disk',45));
 prze2 = imopen(prze1,strel('disk',10));
 
 prze3 = imdilate(prze2,strel('disk',20));
@@ -157,6 +158,7 @@ liczbaObszarowBmi(3) = LLp3;
 liczbaObszarowBmi(4) = LLp4;
 
 poka4(img1,Sk1,pscolorSk1,liczbaObszarowSk1,To1,Bm,opisMi,pscolorBm,liczbaObszarowBmi)
+%poka4(img1,Rk1,pscolorRk1,liczbaObszarowRk1,T1,Bm,opisMi,pscolorBm,liczbaObszarowBmi)
 % figure 
 % subplot(1,5,1)
 % imshow(Sk1)
