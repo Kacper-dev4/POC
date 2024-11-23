@@ -1,7 +1,0 @@
-function [wspolczynnikKompktowosci] = wspK(img)
-
-
-wspolczynnikKompktowosci = img;
-
-end
-
