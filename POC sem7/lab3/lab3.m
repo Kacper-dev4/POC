@@ -9,7 +9,7 @@ img1 = rgb2gray(img1);
 img2 = rgb2gray(img2);
 
 % figure
-% subplot(1,2,1)
+% subplot(1,2,1)    
 % imshow(img1);
 % title('img1');
 % subplot(1,2,2)
