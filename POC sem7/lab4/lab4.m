@@ -20,6 +20,11 @@ close all
 % t4 = imread('obrazy\t4.png');
 % t5 = imread('obrazy\t5.png');
 
+% Wczytanie zniekształconych obrazów
+
+s1_edit = imread('obrazy\s1_edit.png');
+c1_edit = imread('obrazy\c1_edit.png');
+
 % Wczytanie podstawowych obrazów
 t1 = imread('obrazy\t5.png');
 s1 = imread('obrazy\s1.png');
@@ -110,7 +115,13 @@ wykresy(t1,c1,s1);
 
 doNormalizacji = [wspT;wspC;wspS];
 
-[normT,normC, normS] = normalizacja(doNormalizacji);
+[norm] = normalizacja(doNormalizacji);
+
+
+normT = norm(1:5,:);
+normC = norm(6:10,:);
+normS = norm(11:15,:);
+
 
 figure 
 subplot(2,2,1)
@@ -157,3 +168,29 @@ view(3)
 xlabel('K1 - współczynnik kompaktowości')
 ylabel('K2 - współćżynnik Malinowskiej')
 zlabel('K3 - współczynnik Mz')
+
+%% Zadanie 4 
+C_edit = cat(3,C,c1_edit);
+S_edit = cat(3,S,s1_edit);
+
+tekstC_edit = liczWsp(C_edit);
+tekstS_edit = liczWsp(S_edit);
+
+figure
+subplotuj(T,tekstT,1,3,6)
+subplotuj(C_edit,tekstC_edit,2,3)
+subplotuj(S_edit,tekstS_edit,3,3)
+
+wspCe = wsp(C_edit);
+wspSe = wsp(S_edit);
+
+doNormalizacji_edit = [wspT;wspCe;wspSe];
+
+[norm_edit] = normalizacja(doNormalizacji_edit);
+
+normTe = norm_edit(1:5,:);
+normCe = norm_edit(6:10,:);
+normSe = norm_edit(12:16,:);
+
+normC1e = norm_edit(11,:);
+normS1e = norm_edit(17,:);
