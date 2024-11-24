@@ -1,17 +1,18 @@
-% s1 = imread('obrazy\s1.png');
-% s2 = imread('obrazy\s2.png');
-% s3 = imread('obrazy\s3.png');
-% s4 = imread('obrazy\s4.png');
-% s5 = imread('obrazy\s5.png');
-% 
-% c1 = imread('obrazy\c1.png');
-% c2 = imread('obrazy\c2.png');
-% c3 = imread('obrazy\c3.png');
-% c4 = imread('obrazy\c4.png');
-% c5 = imread('obrazy\c5.png');
-% 
-% t1 = imread('obrazy\t1.png');
-% t2 = imread('obrazy\t2.png');
-% t3 = imread('obrazy\t3.png');
-% t4 = imread('obrazy\t4.png');
-% t5 = imread('obrazy\t5.png');
+s1 = imread('obrazy\s1.png');
+s2 = imread('obrazy\s2.png');
+s3 = imread('obrazy\s3.png');
+s4 = imread('obrazy\s4.png');
+s5 = imread('obrazy\s5.png');
+
+c1 = imread('obrazy\c1.png');
+c2 = imread('obrazy\c2.png');
+c3 = imread('obrazy\c3.png');
+c4 = imread('obrazy\c4.png');
+c5 = imread('obrazy\c5.png');
+
+t1 = imread('obrazy\t1.png');
+t2 = imread('obrazy\t2.png');
+t3 = imread('obrazy\t3.png');
+t4 = imread('obrazy\t4.png');
+t5 = imread('obrazy\t5.png');
+

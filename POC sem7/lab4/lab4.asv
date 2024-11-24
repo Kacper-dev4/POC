@@ -121,8 +121,8 @@ plot(normS(:,1),normS(:,2),'bs')
 hold off;
 xlim([0,1])
 grid on
-xlabel('K1 - współczynnik kompaktowości')
-ylabel('K2 - współćżynnik Malinowskiej')
+xlabel('K1 - współczynnik komp')
+
 
 subplot(2,2,2)
 hold on;
@@ -132,8 +132,6 @@ plot(normS(:,2),normS(:,3),'bs')
 hold off;
 xlim([0,1])
 grid on
-xlabel('K2 - współczynnik Malinowskiej')
-ylabel('K3 - współczynnik Mz')
 
 subplot(2,2,3)
 hold on;
@@ -143,8 +141,6 @@ plot(normS(:,1),normS(:,3),'bs')
 hold off;
 xlim([0,1])
 grid on
-xlabel('K1 - współczynnik kompaktowości')
-ylabel('K3 - współczynnik Mz')
 
 subplot(2,2,4)
 hold on;
@@ -154,6 +150,3 @@ plot3(normS(:,1),normS(:,2),normS(:,3),'bs')
 hold off;
 grid on
 view(3)
-xlabel('K1 - współczynnik kompaktowości')
-ylabel('K2 - współćżynnik Malinowskiej')
-zlabel('K3 - współczynnik Mz')
