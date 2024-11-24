@@ -68,3 +68,43 @@ subplotuj(S,tekstS,3,3);
 
 wykresy(t1,c1,s1);
 
+%% Zad 3
+
+[wspT, wspC, wspS] = wspWizualizacji(T,C,S);
+
+doNormalizacji = [wspT;wspC;wspS];
+
+[normT,normC, normS] = normalizacja(doNormalizacji);
+
+figure 
+subplot(2,2,1)
+hold on;
+plot(normT(:,1),normT(:,2),'r^')
+plot(normC(:,1),normC(:,2),'ko')
+plot(normS(:,1),normS(:,2),'bs')
+hold off;
+xlim([0,1])
+
+subplot(2,2,2)
+hold on;
+plot(normT(:,2),normT(:,3),'r^')
+plot(normC(:,2),normC(:,3),'ko')
+plot(normS(:,2),normS(:,3),'bs')
+hold off;
+xlim([0,1])
+
+subplot(2,2,3)
+hold on;
+plot(normT(:,1),normT(:,3),'r^')
+plot(normC(:,1),normC(:,3),'ko')
+plot(normS(:,1),normS(:,3),'bs')
+hold off;
+xlim([0,1])
+
+subplot(2,2,4)
+hold on;
+plot3(normT(:,1),normT(:,2),normT(:,3),'r^')
+plot3(normC(:,1),normC(:,2),normC(:,3),'ko')
+plot3(normS(:,1),normS(:,2),normS(:,3),'bs')
+hold off;
+view(3)
