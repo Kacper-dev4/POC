@@ -1,8 +1,0 @@
-function [wspT,wspC,wspS] = wspWizualizacji(T,C,S)
-
-[~,~,dlu]
-    for i=1:dlu
-    end
-
-end
-
