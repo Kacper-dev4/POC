@@ -23,6 +23,7 @@ close all
 % Wczytanie zniekształconych obrazów
 
 s1_edit = imread('obrazy\s1_edit.png');
+%s1_edit = imread('obrazy\t1_edit.png');
 c1_edit = imread('obrazy\c1_edit.png');
 
 % Wczytanie podstawowych obrazów
@@ -40,12 +41,13 @@ t2 = imresize(t2,[512,512]);
 t3 = imresize(t1(1+m:512-m,1+m:512-m), 3, 'nearest');
 t3 = imresize(t3,[512,512]);
 t4 = imrotate(t1, 45,'bilinear','crop'); 
-t5 = imtranslate(t1, [100, -70]);
+%t5 = imtranslate(t1, [100, -70]);
+t5 = imtranslate(imrotate(t1,75,'bilinear','crop'), [100, -70]);
 
 % t2 = imrotate(t1, 15 ,'bilinear','crop'); 
 % t3 = imrotate(t1, 30,'bilinear','crop'); 
 % t4 = imrotate(t1, 45,'bilinear','crop'); 
-% t5 = imrotate(t1, 90,'bilinear','crop'); 
+% t5 = imrotate(t1, 60,'bilinear','crop'); 
 
 % Kwadraty
 s2 = imresize(s1(1+n:512-n,1+n:512-n), 3, 'nearest');
@@ -53,7 +55,10 @@ s2 = imresize(s2,[512,512]);
 s3 = imresize(s1(1+m:512-m,1+m:512-m), 3, 'nearest');
 s3 = imresize(s3,[512,512]);
 s4 = imrotate(s1, 30,'bilinear','crop'); 
-s5 = imtranslate(s1, [100, -150]); 
+%s5 = imtranslate(s1, [100, -150]); 
+s5 = imtranslate(imrotate(s1,25,'bilinear','crop'), [100, -150]); 
+
+
 
 % s2 = imtranslate(s1, [20, -30]); 
 % s3 = imtranslate(s1, [-100, 30]); 
@@ -67,7 +72,10 @@ c3 = imresize(c1(1+m:512-m,1+m:512-m), 3, 'nearest');
 c3 = imresize(c3,[512,512]);
 
 c4 = imrotate(c1, 15,'bilinear','crop');
-c5 = imtranslate(c1, [150, 150]); 
+%c5 = imtranslate(c1, [150, 150]); 
+c5 = imtranslate(imrotate(c1,10,'bilinear','crop'), [150, 150]); 
+
+
 
 % c2 = imresize(c1(1+5:512-5,1+5:512-5), 3, 'nearest');
 % c2 = imresize(c2,[512,512]);
@@ -205,9 +213,12 @@ figure
 hold on 
 hold on;
 plot(normTe(:,1),normTe(:,2),'r^')
-plot(normCe(:,1),normCe(:,2),'ko')
+plot(normCe(:,1),normCe(:,2),'go')
 plot(normSe(:,1),normSe(:,2),'bs')
-plot(normS1e(1,1),normS1e(1,2),'k*')
+
+plot(normS1e(1,1),normS1e(1,2),'ks')
+
+plot(normC1e(1,1),normC1e(1,2),'ko')
 
 for i = indeks
     plot([normS1e(1,1), norm_edit(i,1)], [normS1e(1,2), norm_edit(i,2)], 'k--', 'LineWidth', 1.5);
@@ -231,9 +242,11 @@ figure
 hold on 
 hold on;
 plot(normTe(:,1),normTe(:,2),'r^')
-plot(normCe(:,1),normCe(:,2),'ko')
+plot(normCe(:,1),normCe(:,2),'go')
 plot(normSe(:,1),normSe(:,2),'bs')
-plot(normC1e(1,1),normC1e(1,2),'k*')
+plot(normC1e(1,1),normC1e(1,2),'ko')
+
+plot(normS1e(1,1),normS1e(1,2),'ks')
 
 for i = indeks
     plot([normC1e(1,1), norm_edit(i,1)], [normC1e(1,2), norm_edit(i,2)], 'k--', 'LineWidth', 1.0);
@@ -254,10 +267,12 @@ end
 figure
 hold on;
 plot3(normT(:,1),normT(:,2),normT(:,3),'r^')
-plot3(normC(:,1),normC(:,2),normC(:,3),'ko')
+plot3(normC(:,1),normC(:,2),normC(:,3),'go')
 plot3(normS(:,1),normS(:,2),normS(:,3),'bs')
 
-plot3(normS1e(1,1),normS1e(1,2),normS1e(1,3),'k*')
+plot3(normC1e(1,1),normC1e(1,2),normC1e(1,3),'ko')
+
+plot3(normS1e(1,1),normS1e(1,2),normS1e(1,3),'ks')
 
 for i = indeks
     plot3([normS1e(1,1), norm_edit(i,1)], [normS1e(1,2), norm_edit(i,2)], [normS1e(1,3), norm_edit(i,3)], 'k--', 'LineWidth', 1.0);
@@ -277,10 +292,12 @@ title(klasyfikacja)
 figure
 hold on;
 plot3(normT(:,1),normT(:,2),normT(:,3),'r^')
-plot3(normC(:,1),normC(:,2),normC(:,3),'ko')
+plot3(normC(:,1),normC(:,2),normC(:,3),'go')
 plot3(normS(:,1),normS(:,2),normS(:,3),'bs')
 
-plot3(normC1e(1,1),normC1e(1,2),normC1e(1,3),'k*')
+plot3(normC1e(1,1),normC1e(1,2),normC1e(1,3),'ko')
+
+plot3(normS1e(1,1),normS1e(1,2),normS1e(1,3),'ks')
 
 for i = indeks
     plot3([normC1e(1,1), norm_edit(i,1)], [normC1e(1,2), norm_edit(i,2)], [normC1e(1,3), norm_edit(i,3)], 'k--', 'LineWidth', 1.0);
